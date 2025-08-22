@@ -496,16 +496,20 @@ const ResumeBuilder = () => {
             text-align: justify;
             margin-bottom: 20px;
         }
-        .experience-item, .education-item {
+        .experience-item, .education-item, .publication-item {
             margin-bottom: 20px;
         }
         .job-header, .edu-header {
             margin-bottom: 10px;
         }
-        .company-info, .school-info {
+        .company-info, .school-info, .publication-info, .publication-authors, .publication-publisher {
             font-style: italic;
             color: #555;
             margin: 5px 0;
+        }
+        .publication-description {
+            margin: 10px 0;
+            color: #333;
         }
         ul {
             margin: 10px 0;
@@ -572,6 +576,18 @@ const ResumeBuilder = () => {
                 <h3>${item.degree}</h3>
                 <div class="school-info">${item.school} | ${item.dates} | ${item.location}</div>
               </div>
+            </div>
+          `;
+        });
+      } else if (section.type === 'publications') {
+        section.items?.forEach(item => {
+          sectionHTML += `
+            <div class="publication-item">
+              <h3>${item.title}</h3>
+              <div class="publication-info">${item.type} | ${item.date}</div>
+              <div class="publication-authors">Authors: ${item.authors}</div>
+              <div class="publication-publisher">${item.publisher}</div>
+              ${item.description ? `<div class="publication-description">${item.description}</div>` : ''}
             </div>
           `;
         });
@@ -651,12 +667,15 @@ const ResumeBuilder = () => {
             text-align: justify;
             margin-bottom: 15px;
         }
-        .experience-item, .education-item {
+        .experience-item, .education-item, .publication-item {
             margin-bottom: 12px;
         }
-        .company-info, .school-info {
+        .company-info, .school-info, .publication-info, .publication-authors, .publication-publisher {
             font-style: italic;
             margin: 3px 0;
+        }
+        .publication-description {
+            margin: 5px 0;
         }
         ul {
             margin: 5px 0;
@@ -711,6 +730,18 @@ const ResumeBuilder = () => {
             <div class="education-item">
               <h3>${item.degree}</h3>
               <div class="school-info">${item.school} | ${item.dates} | ${item.location}</div>
+            </div>
+          `;
+        });
+      } else if (section.type === 'publications') {
+        section.items?.forEach(item => {
+          sectionHTML += `
+            <div class="publication-item">
+              <h3>${item.title}</h3>
+              <div class="publication-info">${item.type} | ${item.date}</div>
+              <div class="publication-authors">Authors: ${item.authors}</div>
+              <div class="publication-publisher">${item.publisher}</div>
+              ${item.description ? `<div class="publication-description">${item.description}</div>` : ''}
             </div>
           `;
         });
